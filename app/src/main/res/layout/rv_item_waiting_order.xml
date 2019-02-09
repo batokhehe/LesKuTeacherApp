@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="waitingOrder"
+            type="id.co.leskuteacher.viewmodels.WaitingOrderViewModel"/>
+    </data>
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:elevation="2dp"
+        android:background="@drawable/shape_rect_rv_item"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/waitingOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@{waitingOrder.id}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dip"
+            android:weightSum="1">
+            
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/waitingOrderSubjectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@{waitingOrder.subjectName}" />
+
+                <TextView
+                    android:id="@+id/waitingOrderStudyStartAt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@{waitingOrder.studyStartAt}" />
+                
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4">
+
+            <ImageView
+                android:id="@+id/waitingOrderStudentImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:imageStudentUrl="@{waitingOrder.studentImage}"/>
+
+            <TextView
+                android:id="@+id/waitingOrderStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@{waitingOrder.studentName}" />
+
+            <TextView
+                android:id="@+id/waitingOrderStudentAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@{waitingOrder.studentAddress}" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

@@ -12,6 +12,6 @@ public class K
     public static String PRODUCT_LIST      = "PRODUCT_LIST";
     public static String TEACHER_ORDER_LIST      = "TEACHER_ORDER_LIST";
     public static String TEACHER_BLANK_SCHEDULE_LIST      = "TEACHER_BLANK_SCHEDULE_LIST";
-    public static String UNPAID_ORDER_LIST      = "UNPAID_ORDER_LIST";
+    public static String WAITING_ORDER_LIST      = "WAITING_ORDER_LIST";
     public static String DETAILS_ORDER_LIST      = "DETAILS_ORDER_LIST";
 }

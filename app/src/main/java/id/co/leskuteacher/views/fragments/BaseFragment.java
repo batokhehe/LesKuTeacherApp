@@ -39,5 +39,4 @@ public abstract class BaseFragment extends Fragment
                     .hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
-
 }

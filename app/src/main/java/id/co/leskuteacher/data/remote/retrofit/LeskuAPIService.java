@@ -1,6 +1,10 @@
 package id.co.leskuteacher.data.remote.retrofit;
 
 import com.google.gson.JsonObject;
+
+import java.util.List;
+
+import id.co.leskuteacher.model.WaitingOrder;
 import io.reactivex.Maybe;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -31,4 +35,7 @@ public interface LeskuAPIService
 
     @GET ("users/{id}")
     Maybe<JsonObject> forgotPassword (@Path("id") String id);
+
+    @GET ("teacher/order/waiting")
+    Maybe<List<WaitingOrder>> getWaitingOrderList ();
 }

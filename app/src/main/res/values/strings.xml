@@ -93,7 +93,7 @@
     </string-array>
     <!-- O -->
     <string name="orderClass">Pesanan</string>
-    <string name="other">Other</string>
+    <string name="others">Others</string>
     <string name="openDrawer">open_drawer</string>
     <!-- P -->
     <string name="parent_name">Parent Name</string>
