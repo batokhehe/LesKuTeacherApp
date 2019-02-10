@@ -9,4 +9,6 @@ import io.reactivex.Maybe;
 
 public interface OrderClass {
     Maybe<List<WaitingOrder>> getWaitingOrderList();
+
+    Maybe<JsonObject> acceptOrder(int id);
 }

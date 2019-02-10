@@ -38,4 +38,10 @@ public interface LeskuAPIService
 
     @GET ("teacher/order/waiting")
     Maybe<List<WaitingOrder>> getWaitingOrderList ();
+
+    @FormUrlEncoded
+    @POST ("teacher/order/accept_order")
+    Maybe<JsonObject> acceptOrder (
+            @Field("id") int id
+    );
 }

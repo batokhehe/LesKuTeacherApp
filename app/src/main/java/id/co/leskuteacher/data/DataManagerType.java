@@ -14,4 +14,6 @@ public interface DataManagerType {
 
     //WAITING ORDER
     Maybe<List<WaitingOrder>> getWaitingOrderList();
+
+    Maybe<JsonObject> acceptOrder(int id);
 }

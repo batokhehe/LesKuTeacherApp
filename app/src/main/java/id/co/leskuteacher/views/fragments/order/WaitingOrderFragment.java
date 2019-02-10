@@ -6,12 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,7 @@ import id.co.leskuteacher.databinding.FragmentWaitingOrderBinding;
 import id.co.leskuteacher.model.WaitingOrder;
 import id.co.leskuteacher.utils.RetrofitErrorAdapter;
 import id.co.leskuteacher.viewmodels.WaitingOrderListViewModel;
+import id.co.leskuteacher.views.activities.MainActivity;
 import id.co.leskuteacher.views.adapters.order.WaitingOrderAdapter;
 import id.co.leskuteacher.views.fragments.BaseFragment;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -64,40 +70,13 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
 
         mBinding.llWaitingList.showCustomLoading(true, "Loading..");
 
-        DataManager.can().getWaitingOrderList().observeOn(AndroidSchedulers.mainThread())
-                .defaultIfEmpty(new ArrayList<WaitingOrder>())
-                .subscribe(new Consumer<List<WaitingOrder>>()
-                {
-                    @Override
-                    public void accept (List<WaitingOrder> waitingOrders) throws Exception
-                    {
-                        if (mWaitingOrder != null) { mWaitingOrder.clear(); }
-                        mWaitingOrder.addAll(waitingOrders);
-                        mBinding.rvWaitingOrder.getAdapter().notifyDataSetChanged();
-                        mBinding.llWaitingList.showCustomLoading(false);
-                        if (mWaitingOrder.size() == 0)
-                        {
-                            mBinding.llWaitingList.showEmptyView(true);
-                        }
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept (Throwable throwable) throws Exception
-                    {
-                        RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
-                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                        mBinding.llWaitingList.showCustomLoading(false);
-                    }
-                });
+        //Load Data
+        loadRecyclerViewData(1);
 
         adapter.setOnClickListener(new WaitingOrderAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(WaitingOrder unpaidOrder) {
-//                Toast.makeText(getContext(), "Order ID : " + unpaidOrder.getId(), Toast.LENGTH_SHORT).show();
+            public void onItemClick(WaitingOrder waitingOrder) {
                 allowRefresh = true;
-//                Intent intent = new Intent(getContext(), OrderDetailsActivity.class);
-//                intent.putExtra("id", String.valueOf(unpaidOrder.getId()));
-//                startActivity(intent);
             }
         });
 
@@ -119,7 +98,7 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                 mBinding.swipeWaitingOrder.setRefreshing(true);
 
                 // Fetching data from server
-                loadRecyclerViewData();
+                loadRecyclerViewData(0);
             }
         });
 
@@ -138,7 +117,7 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
 
     @Override
     public void onRefresh() {
-        loadRecyclerViewData();
+        loadRecyclerViewData(0);
     }
 
     public interface OnFragmentInteractionListener {
@@ -146,7 +125,7 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
         void onFragmentInteraction(Uri uri);
     }
 
-    private void loadRecyclerViewData()
+    public void loadRecyclerViewData(final int loadingView)
     {
         // Showing refresh animation before making http call
         mBinding.swipeWaitingOrder.setRefreshing(true);
@@ -157,14 +136,21 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                     @Override
                     public void accept (List<WaitingOrder> waitingOrders) throws Exception
                     {
-                        if (mWaitingOrder != null) { mWaitingOrder.clear(); }
+                        mWaitingOrder.clear();
                         mWaitingOrder.addAll(waitingOrders);
+
+                        for (int i = 0; i<mWaitingOrder.size(); i++){
+                            Log.i("Waiting order: ", mWaitingOrder.get(i).getSubjectName());
+                        }
                         mBinding.rvWaitingOrder.getAdapter().notifyDataSetChanged();
                         if (mWaitingOrder.size() == 0)
                         {
                             mBinding.llWaitingList.showEmptyView(true);
                         }
                         mBinding.swipeWaitingOrder.setRefreshing(false);
+                        if(loadingView == 1){
+                            mBinding.llWaitingList.showCustomLoading(false);
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -173,9 +159,36 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                         RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
                         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                         mBinding.swipeWaitingOrder.setRefreshing(false);
+                        if(loadingView == 1){
+                            mBinding.llWaitingList.showCustomLoading(false);
+                        }
                     }
                 });
 
+    }
+
+    public void acceptOrder(int id) {
+        DataManager.can().acceptOrder(id)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<JsonObject>()
+                {
+                    @Override
+                    public void accept (JsonObject object) throws Exception
+                    {
+                        Toast.makeText(MainActivity.contextOfApplication, "Order Accepted", Toast.LENGTH_SHORT).show();
+//                        loadRecyclerViewData(0);
+                        // Reload current fragment
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.detach(WaitingOrderFragment.this).attach(WaitingOrderFragment.this).commit();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept (Throwable throwable) throws Exception
+                    {
+                        RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
 }

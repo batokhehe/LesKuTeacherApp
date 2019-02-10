@@ -51,4 +51,10 @@ public class DataManager implements DataManagerType
             }
         })).firstElement();
     }
+
+    @Override
+    public Maybe<JsonObject> acceptOrder(int id)
+    {
+        return sOrderAPI.acceptOrder(id);
+    }
 }
