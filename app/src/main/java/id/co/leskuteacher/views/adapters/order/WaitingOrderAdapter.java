@@ -60,6 +60,12 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
         return (mWaitingOrder == null) ? 0 : mWaitingOrder.size();
     }
 
+    @Override
+    public int getItemViewType(int position)
+    {
+        return position;
+    }
+
     public class ListViewHolder extends RecyclerView.ViewHolder {
         public ListViewHolder(View itemView) {
             super(itemView);

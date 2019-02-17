@@ -68,10 +68,10 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
         mBinding.rvWaitingOrder.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.rvWaitingOrder.setAdapter(adapter);
 
-        mBinding.llWaitingList.showCustomLoading(true, "Loading..");
-
-        //Load Data
-        loadRecyclerViewData(1);
+//        mBinding.llWaitingList.showLoading(true, "Loading..");
+//
+//        //Load Data
+//        loadRecyclerViewData(1);
 
         adapter.setOnClickListener(new WaitingOrderAdapter.OnItemClickListener() {
             @Override
@@ -148,9 +148,9 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                             mBinding.llWaitingList.showEmptyView(true);
                         }
                         mBinding.swipeWaitingOrder.setRefreshing(false);
-                        if(loadingView == 1){
-                            mBinding.llWaitingList.showCustomLoading(false);
-                        }
+//                        if(loadingView == 1){
+//                            mBinding.llWaitingList.showLoading(false);
+//                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -159,9 +159,9 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                         RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
                         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                         mBinding.swipeWaitingOrder.setRefreshing(false);
-                        if(loadingView == 1){
-                            mBinding.llWaitingList.showCustomLoading(false);
-                        }
+//                        if(loadingView == 1){
+//                            mBinding.llWaitingList.showLoading(false);
+//                        }
                     }
                 });
 
