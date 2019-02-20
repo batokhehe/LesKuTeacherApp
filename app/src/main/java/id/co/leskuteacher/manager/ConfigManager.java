@@ -2,8 +2,8 @@ package id.co.leskuteacher.manager;
 
 public class ConfigManager {
     //BASE URL
-//    public static final String BASE_URL = "http://192.168.1.8:8000/api/";
-//    public static final String BASE_URL_IMAGE = "http://192.168.1.8:8000/img/";
+//    public static final String BASE_URL = "http://192.168.1.6:8000/api/";
+//    public static final String BASE_URL_IMAGE = "http://192.168.1.6:8000/img/";
     public static final String BASE_URL = "http://192.168.43.54:8000/api/";
     public static final String BASE_URL_IMAGE = "http://192.168.43.54:8000/img/";
 

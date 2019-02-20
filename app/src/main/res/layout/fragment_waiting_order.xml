@@ -6,15 +6,15 @@
             type="id.co.leskuteacher.viewmodels.WaitingOrderListViewModel"/>
     </data>
 
-    <id.co.flipbox.sosoito.LoadingLayout
+    <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ll_waiting_list"
+        android:id="@+id/swipe_waiting_order"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.SwipeRefreshLayout
+        <id.co.flipbox.sosoito.LoadingLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/swipe_waiting_order"
+            android:id="@+id/ll_waiting_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -23,7 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        </id.co.flipbox.sosoito.LoadingLayout>
 
-    </id.co.flipbox.sosoito.LoadingLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </layout>

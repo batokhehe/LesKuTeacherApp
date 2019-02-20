@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 
+import id.co.leskuteacher.model.UpcomingOrder;
 import id.co.leskuteacher.model.WaitingOrder;
 import io.reactivex.Maybe;
 import retrofit2.http.Field;
@@ -42,6 +43,27 @@ public interface LeskuAPIService
     @FormUrlEncoded
     @POST ("teacher/order/accept_order")
     Maybe<JsonObject> acceptOrder (
+            @Field("id") int id
+    );
+
+    @FormUrlEncoded
+    @POST ("teacher/order/decline_order")
+    Maybe<JsonObject> declineOrder (
+            @Field("id") int id
+    );
+
+    @GET ("teacher/order/upcoming")
+    Maybe<List<UpcomingOrder>> getUpcomingOrderList ();
+
+    @FormUrlEncoded
+    @POST ("teacher/schedule/confirm_schedule")
+    Maybe<JsonObject> confirmOrder (
+            @Field("id") int id
+    );
+
+    @FormUrlEncoded
+    @POST ("teacher/schedule/reschedule")
+    Maybe<JsonObject> rescheduleOrder (
             @Field("id") int id
     );
 }

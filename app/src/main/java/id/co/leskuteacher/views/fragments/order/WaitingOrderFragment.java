@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -68,11 +69,6 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
         mBinding.rvWaitingOrder.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.rvWaitingOrder.setAdapter(adapter);
 
-//        mBinding.llWaitingList.showLoading(true, "Loading..");
-//
-//        //Load Data
-//        loadRecyclerViewData(1);
-
         adapter.setOnClickListener(new WaitingOrderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(WaitingOrder waitingOrder) {
@@ -81,11 +77,7 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
         });
 
         // SwipeRefreshLayout
-        mBinding.swipeWaitingOrder.setOnRefreshListener(this);
-        mBinding.swipeWaitingOrder.setColorSchemeResources(R.color.colorPrimary,
-                android.R.color.holo_green_dark,
-                android.R.color.holo_orange_dark,
-                android.R.color.holo_blue_dark);
+        onCreateSwipeToRefresh(mBinding.swipeWaitingOrder);
 
         /**
          * Showing Swipe Refresh animation on activity create
@@ -94,15 +86,20 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
         mBinding.swipeWaitingOrder.post(new Runnable() {
             @Override
             public void run() {
-
-                mBinding.swipeWaitingOrder.setRefreshing(true);
-
                 // Fetching data from server
-                loadRecyclerViewData(0);
+                loadRecyclerViewData();
             }
         });
 
         return mBinding.getRoot();
+    }
+
+    private void onCreateSwipeToRefresh(SwipeRefreshLayout refreshLayout) {
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
     }
 
     @Override
@@ -117,7 +114,12 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
 
     @Override
     public void onRefresh() {
-        loadRecyclerViewData(0);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                loadRecyclerViewData();
+            }
+        });
     }
 
     public interface OnFragmentInteractionListener {
@@ -125,7 +127,7 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
         void onFragmentInteraction(Uri uri);
     }
 
-    public void loadRecyclerViewData(final int loadingView)
+    public void loadRecyclerViewData()
     {
         // Showing refresh animation before making http call
         mBinding.swipeWaitingOrder.setRefreshing(true);
@@ -146,11 +148,10 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                         if (mWaitingOrder.size() == 0)
                         {
                             mBinding.llWaitingList.showEmptyView(true);
+                        } else {
+                            mBinding.llWaitingList.showEmptyView(false);
                         }
                         mBinding.swipeWaitingOrder.setRefreshing(false);
-//                        if(loadingView == 1){
-//                            mBinding.llWaitingList.showLoading(false);
-//                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -159,36 +160,7 @@ public class WaitingOrderFragment extends BaseFragment implements SwipeRefreshLa
                         RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
                         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                         mBinding.swipeWaitingOrder.setRefreshing(false);
-//                        if(loadingView == 1){
-//                            mBinding.llWaitingList.showLoading(false);
-//                        }
-                    }
-                });
-
-    }
-
-    public void acceptOrder(int id) {
-        DataManager.can().acceptOrder(id)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<JsonObject>()
-                {
-                    @Override
-                    public void accept (JsonObject object) throws Exception
-                    {
-                        Toast.makeText(MainActivity.contextOfApplication, "Order Accepted", Toast.LENGTH_SHORT).show();
-//                        loadRecyclerViewData(0);
-                        // Reload current fragment
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.detach(WaitingOrderFragment.this).attach(WaitingOrderFragment.this).commit();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept (Throwable throwable) throws Exception
-                    {
-                        RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
-                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }
-
 }

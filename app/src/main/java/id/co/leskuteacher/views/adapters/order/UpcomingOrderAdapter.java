@@ -18,47 +18,46 @@ import java.util.List;
 
 import id.co.leskuteacher.R;
 import id.co.leskuteacher.data.DataManager;
-import id.co.leskuteacher.databinding.RvItemWaitingOrderBinding;
-import id.co.leskuteacher.model.WaitingOrder;
+import id.co.leskuteacher.databinding.RvItemUpcomingOrderBinding;
+import id.co.leskuteacher.model.UpcomingOrder;
+import id.co.leskuteacher.model.UpcomingOrder;
 import id.co.leskuteacher.utils.RetrofitErrorAdapter;
-import id.co.leskuteacher.viewmodels.WaitingOrderViewModel;
-import id.co.leskuteacher.views.activities.MainActivity;
-import id.co.leskuteacher.views.fragments.order.WaitingOrderFragment;
+import id.co.leskuteacher.viewmodels.UpcomingOrderViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
-public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapter.ListViewHolder>  {
-    private RvItemWaitingOrderBinding waitingItemBinding;
-    private List<WaitingOrder> mWaitingOrder;
+public class UpcomingOrderAdapter extends RecyclerView.Adapter<UpcomingOrderAdapter.ListViewHolder>  {
+    private RvItemUpcomingOrderBinding upcomingItemBinding;
+    private List<UpcomingOrder> mUpcomingOrder;
     private Context mContext;
     private OnItemClickListener listener;
-    private Button btnAcceptOrder, btnDeclineOrder;
+    private Button btnConfirmOrder, btnRescheduleOrder;
 
-    public WaitingOrderAdapter(List<WaitingOrder> waitingOrders, Context context) {
-        mWaitingOrder = waitingOrders;
+    public UpcomingOrderAdapter(List<UpcomingOrder> upcomingOrders, Context context) {
+        mUpcomingOrder = upcomingOrders;
         mContext = context;
     }
 
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        waitingItemBinding = DataBindingUtil
-                .inflate(LayoutInflater.from(parent.getContext()), R.layout.rv_item_waiting_order, parent, false);
+        upcomingItemBinding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.rv_item_upcoming_order, parent, false);
 
-        WaitingOrderAdapter.ListViewHolder vh = new WaitingOrderAdapter.ListViewHolder(waitingItemBinding.getRoot());
-        vh.setBinding(waitingItemBinding);
+        UpcomingOrderAdapter.ListViewHolder vh = new UpcomingOrderAdapter.ListViewHolder(upcomingItemBinding.getRoot());
+        vh.setBinding(upcomingItemBinding);
 
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WaitingOrderAdapter.ListViewHolder holder, int position) {
-        holder.setOrder(mWaitingOrder.get(position));
+    public void onBindViewHolder(@NonNull UpcomingOrderAdapter.ListViewHolder holder, int position) {
+        holder.setOrder(mUpcomingOrder.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return (mWaitingOrder == null) ? 0 : mWaitingOrder.size();
+        return (mUpcomingOrder == null) ? 0 : mUpcomingOrder.size();
     }
 
     @Override
@@ -71,13 +70,12 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
         public ListViewHolder(View itemView) {
             super(itemView);
 
-            btnAcceptOrder = (Button) itemView.findViewById(R.id.btn_accept_order);
-            btnAcceptOrder.setOnClickListener(new View.OnClickListener() {
+            btnConfirmOrder = (Button) itemView.findViewById(R.id.btn_confirm_order);
+            btnConfirmOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     final int position = getAdapterPosition();
-                    final WaitingOrder waitingOrder = mWaitingOrder.get(position);
-//                    Toast.makeText(mContext, "" + waitingOrder.getId(), Toast.LENGTH_SHORT).show();
+                    final UpcomingOrder upcomingOrder = mUpcomingOrder.get(position);
                     final AlertDialog.Builder builder = new AlertDialog.Builder(
                             mContext);
                     builder.setMessage("Accept Order?")
@@ -87,7 +85,7 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
                                         //do something
                                         public void onClick(DialogInterface dialog,
                                                             int id) {
-                                            acceptOrder(waitingOrder.getId(), position);
+                                            confirmOrder(upcomingOrder.getId(), position);
                                         }
                                     })
                             .setNegativeButton("No",
@@ -102,13 +100,13 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
                 }
             });
 
-            btnDeclineOrder = (Button) itemView.findViewById(R.id.btn_decline_order);
-            btnDeclineOrder.setOnClickListener(new View.OnClickListener() {
+            btnRescheduleOrder = (Button) itemView.findViewById(R.id.btn_reschedule_order);
+            btnRescheduleOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     final int position = getAdapterPosition();
-                    final WaitingOrder waitingOrder = mWaitingOrder.get(position);
-//                    Toast.makeText(mContext, "" + waitingOrder.getId(), Toast.LENGTH_SHORT).show();
+                    final UpcomingOrder upcomingOrder = mUpcomingOrder.get(position);
+//                    Toast.makeText(mContext, "" + UpcomingOrder.getId(), Toast.LENGTH_SHORT).show();
                     final AlertDialog.Builder builder = new AlertDialog.Builder(
                             mContext);
                     builder.setMessage("Decline Order?")
@@ -118,7 +116,7 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
                                         //do something
                                         public void onClick(DialogInterface dialog,
                                                             int id) {
-                                            declineOrder(waitingOrder.getId(), position);
+                                            rescheduleOrder(upcomingOrder.getId(), position);
                                         }
                                     })
                             .setNegativeButton("No",
@@ -138,51 +136,50 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION){
-                        listener.onItemClick(mWaitingOrder.get(position));
+                        listener.onItemClick(mUpcomingOrder.get(position));
                     }
                 }
             });
         }
 
-        void setBinding (RvItemWaitingOrderBinding binding)
+        void setBinding (RvItemUpcomingOrderBinding binding)
         {
-            waitingItemBinding = binding;
+            upcomingItemBinding = binding;
         }
 
-        public void setOrder (WaitingOrder waitingOrders)
+        public void setOrder (UpcomingOrder UpcomingOrders)
         {
-            if (waitingItemBinding.getWaitingOrder() == null)
+            if (upcomingItemBinding.getUpcomingOrder() == null)
             {
-                waitingItemBinding.setWaitingOrder(new WaitingOrderViewModel(waitingOrders));
+                upcomingItemBinding.setUpcomingOrder(new UpcomingOrderViewModel(UpcomingOrders));
             }
             else
             {
-                waitingItemBinding.getWaitingOrder().setOrder(waitingOrders);
+                upcomingItemBinding.getUpcomingOrder().setOrder(UpcomingOrders);
             }
 
         }
     }
 
     public interface OnItemClickListener{
-        void onItemClick(WaitingOrder waitingOrders);
+        void onItemClick(UpcomingOrder UpcomingOrders);
     }
 
     public void setOnClickListener(OnItemClickListener listener){
         this.listener = listener;
     }
 
-    public void acceptOrder(int id, final int position) {
-        DataManager.can().acceptOrder(id)
+    public void confirmOrder(int id, final int position) {
+        DataManager.can().confirmOrder(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<JsonObject>()
                 {
                     @Override
                     public void accept (JsonObject object) throws Exception
                     {
-                        Toast.makeText(mContext, "Order Accepted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Order Confirmed", Toast.LENGTH_SHORT).show();
                         // Reload current fragment
-//                        WaitingOrderAdapter.this.notifyDataSetChanged();
-                        removeAt(position);
+//                        removeAt(position);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -194,17 +191,17 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
                 });
     }
 
-    public void declineOrder(int id, final int position) {
-        DataManager.can().declineOrder(id)
+    public void rescheduleOrder(int id, final int position) {
+        DataManager.can().rescheduleOrder(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<JsonObject>()
                 {
                     @Override
                     public void accept (JsonObject object) throws Exception
                     {
-                        Toast.makeText(mContext, "Order Decline", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Order Rescheduled", Toast.LENGTH_SHORT).show();
                         // Reload current fragment
-                        removeAt(position);
+//                        removeAt(position);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -214,11 +211,5 @@ public class WaitingOrderAdapter extends RecyclerView.Adapter<WaitingOrderAdapte
                         Toast.makeText(mContext, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-    }
-
-    public void removeAt(int position) {
-        mWaitingOrder.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, mWaitingOrder.size());
     }
 }
