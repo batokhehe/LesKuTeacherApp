@@ -31,6 +31,7 @@ import id.co.leskuteacher.manager.HawkManager;
 import id.co.leskuteacher.views.activities.auth.LoginActivity;
 import id.co.leskuteacher.views.fragments.main.AccountFragment;
 import id.co.leskuteacher.views.fragments.order.OrderFragment;
+import id.co.leskuteacher.views.fragments.presence.PresenceFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
@@ -56,8 +57,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG_HOME = "home";
     private static final String TAG_ACCOUNT = "account";
     private static final String TAG_ORDER = "order";
-    private static final String TAG_NOTIFICATIONS = "notifications";
-    private static final String TAG_SETTINGS = "settings";
+    private static final String TAG_PRESENCE = "presence";
     public static String CURRENT_TAG = TAG_HOME;
 
     // toolbar titles respected to selected nav menu item
@@ -169,6 +169,10 @@ public class MainActivity extends AppCompatActivity
                         navItemIndex = 1;
                         CURRENT_TAG = TAG_ORDER;
                         break;
+                    case R.id.nav_presence:
+                        navItemIndex = 2;
+                        CURRENT_TAG = TAG_PRESENCE;
+                        break;
                     case R.id.nav_logout:
                         hawkManager.destroyAppData();
                         startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -273,6 +277,10 @@ public class MainActivity extends AppCompatActivity
                 // order fragment
                 OrderFragment orderFragment = new OrderFragment();
                 return orderFragment;
+            case 2:
+                // presence fragment
+                PresenceFragment presenceFragment = new PresenceFragment();
+                return presenceFragment;
             default:
                 OrderFragment defaultFragment = new OrderFragment();
                 return defaultFragment;
@@ -366,6 +374,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (id == R.id.nav_order) {
+
+        } else if (id == R.id.nav_presence) {
 
         }
 

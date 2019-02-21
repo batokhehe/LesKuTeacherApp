@@ -3,7 +3,7 @@ package id.co.leskuteacher.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UpcomingOrder {
+public class Presence {
     @SerializedName("id")
     @Expose
     private int id;
@@ -28,9 +28,6 @@ public class UpcomingOrder {
     @SerializedName("student_address")
     @Expose
     private String studentAddress;
-    @SerializedName("status")
-    @Expose
-    private int status;
 
     public int getId() {
         return id;
@@ -94,13 +91,5 @@ public class UpcomingOrder {
 
     public void setStudyStartAt(String studyStartAt) {
         this.studyStartAt = studyStartAt;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 }

@@ -20,7 +20,7 @@ public class UpcomingOrderStorage implements RAGEContract<UpcomingOrder, Integer
 
     @Override
     public Maybe<List<UpcomingOrder>> getList() {
-        List<UpcomingOrder> upcomingOrders = isCacheValid() ? Hawk.get(K.WAITING_ORDER_LIST, new ArrayList<UpcomingOrder>()) : null;
+        List<UpcomingOrder> upcomingOrders = isCacheValid() ? Hawk.get(K.UPCOMING_ORDER_LIST, new ArrayList<UpcomingOrder>()) : null;
         return upcomingOrders == null ? Maybe.<List<UpcomingOrder>>empty() : Maybe.just(upcomingOrders).subscribeOn(Schedulers.io());
     }
 

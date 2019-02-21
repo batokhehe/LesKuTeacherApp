@@ -13,5 +13,8 @@ public class K
     public static String TEACHER_ORDER_LIST      = "TEACHER_ORDER_LIST";
     public static String TEACHER_BLANK_SCHEDULE_LIST      = "TEACHER_BLANK_SCHEDULE_LIST";
     public static String WAITING_ORDER_LIST      = "WAITING_ORDER_LIST";
+    public static String UPCOMING_ORDER_LIST      = "UPCOMING_ORDER_LIST";
+    public static String DONE_ORDER_LIST      = "DONE_ORDER_LIST";
     public static String DETAILS_ORDER_LIST      = "DETAILS_ORDER_LIST";
+    public static String PRESENCE_LIST      = "PRESENCE_LIST";
 }

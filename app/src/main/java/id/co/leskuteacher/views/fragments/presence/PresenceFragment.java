@@ -1,4 +1,4 @@
-package id.co.leskuteacher.views.fragments.order;
+package id.co.leskuteacher.views.fragments.presence;
 
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
@@ -19,27 +19,27 @@ import java.util.List;
 
 import id.co.leskuteacher.R;
 import id.co.leskuteacher.data.DataManager;
-import id.co.leskuteacher.databinding.FragmentFinishedOrderBinding;
-import id.co.leskuteacher.model.FinishedOrder;
+import id.co.leskuteacher.databinding.FragmentPresenceBinding;
+import id.co.leskuteacher.model.Presence;
 import id.co.leskuteacher.utils.RetrofitErrorAdapter;
-import id.co.leskuteacher.viewmodels.FinishedOrderListViewModel;
-import id.co.leskuteacher.views.adapters.order.FinishedOrderAdapter;
+import id.co.leskuteacher.viewmodels.PresenceListViewModel;
+import id.co.leskuteacher.views.adapters.presence.PresenceAdapter;
 import id.co.leskuteacher.views.fragments.BaseFragment;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
-public class FinishedOrderFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class PresenceFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    FragmentFinishedOrderBinding mBinding;
-    List<FinishedOrder> mFinishedOrder;
+    FragmentPresenceBinding mBinding;
+    List<Presence> mPresence;
     private OnFragmentInteractionListener mListener;
-    FinishedOrderAdapter adapter;
+    PresenceAdapter adapter;
     private boolean allowRefresh;
 
-    public FinishedOrderFragment() {
+    public PresenceFragment() {
         // Required empty public constructor
         setArguments(new Bundle());
-        mFinishedOrder = new ArrayList<>();
+        mPresence = new ArrayList<>();
     }
 
     @Override
@@ -55,29 +55,29 @@ public class FinishedOrderFragment extends BaseFragment implements SwipeRefreshL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_finished_order, container, false);
-        mBinding.setOrders(new FinishedOrderListViewModel());
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_presence, container, false);
+        mBinding.setOrders(new PresenceListViewModel());
 
-        adapter = new FinishedOrderAdapter(mFinishedOrder, getContext());
+        adapter = new PresenceAdapter(mPresence, getContext());
 
-        mBinding.rvDoneOrder.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.rvDoneOrder.setAdapter(adapter);
+        mBinding.rvPresence.setLayoutManager(new LinearLayoutManager(getContext()));
+        mBinding.rvPresence.setAdapter(adapter);
 
-        adapter.setOnClickListener(new FinishedOrderAdapter.OnItemClickListener() {
+        adapter.setOnClickListener(new PresenceAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(FinishedOrder waitingOrder) {
+            public void onItemClick(Presence Presence) {
                 allowRefresh = true;
             }
         });
 
         // SwipeRefreshLayout
-        onCreateSwipeToRefresh(mBinding.swipeDoneOrder);
+        onCreateSwipeToRefresh(mBinding.swipePresence);
 
         /**
          * Showing Swipe Refresh animation on activity create
          * As animation won't start on onCreate, post runnable is used
          */
-        mBinding.swipeDoneOrder.post(new Runnable() {
+        mBinding.swipePresence.post(new Runnable() {
             @Override
             public void run() {
                 // Fetching data from server
@@ -124,28 +124,28 @@ public class FinishedOrderFragment extends BaseFragment implements SwipeRefreshL
     public void loadRecyclerViewData()
     {
         // Showing refresh animation before making http call
-        mBinding.swipeDoneOrder.setRefreshing(true);
-        DataManager.can().getDoneOrderList().observeOn(AndroidSchedulers.mainThread())
-                .defaultIfEmpty(new ArrayList<FinishedOrder>())
-                .subscribe(new Consumer<List<FinishedOrder>>()
+        mBinding.swipePresence.setRefreshing(true);
+        DataManager.can().getPresenceList().observeOn(AndroidSchedulers.mainThread())
+                .defaultIfEmpty(new ArrayList<Presence>())
+                .subscribe(new Consumer<List<Presence>>()
                 {
                     @Override
-                    public void accept (List<FinishedOrder> waitingOrders) throws Exception
+                    public void accept (List<Presence> Presences) throws Exception
                     {
-                        mFinishedOrder.clear();
-                        mFinishedOrder.addAll(waitingOrders);
+                        mPresence.clear();
+                        mPresence.addAll(Presences);
 
-                        for (int i = 0; i< mFinishedOrder.size(); i++){
-                            Log.i("Done order: ", mFinishedOrder.get(i).getSubjectName());
+                        for (int i = 0; i<mPresence.size(); i++){
+                            Log.i("Waiting order: ", mPresence.get(i).getSubjectName());
                         }
-                        mBinding.rvDoneOrder.getAdapter().notifyDataSetChanged();
-                        if (mFinishedOrder.size() == 0)
+                        mBinding.rvPresence.getAdapter().notifyDataSetChanged();
+                        if (mPresence.size() == 0)
                         {
-                            mBinding.llDoneList.showEmptyView(true);
+                            mBinding.llWaitingList.showEmptyView(true);
                         } else {
-                            mBinding.llDoneList.showEmptyView(false);
+                            mBinding.llWaitingList.showEmptyView(false);
                         }
-                        mBinding.swipeDoneOrder.setRefreshing(false);
+                        mBinding.swipePresence.setRefreshing(false);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -153,7 +153,7 @@ public class FinishedOrderFragment extends BaseFragment implements SwipeRefreshL
                     {
                         RetrofitErrorAdapter error = new RetrofitErrorAdapter(throwable);
                         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                        mBinding.swipeDoneOrder.setRefreshing(false);
+                        mBinding.swipePresence.setRefreshing(false);
                     }
                 });
     }

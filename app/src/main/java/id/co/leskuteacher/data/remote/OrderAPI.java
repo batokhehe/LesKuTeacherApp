@@ -3,6 +3,7 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 import id.co.leskuteacher.data.remote.contracts.OrderClass;
+import id.co.leskuteacher.model.FinishedOrder;
 import id.co.leskuteacher.model.UpcomingOrder;
 import id.co.leskuteacher.model.WaitingOrder;
 import id.co.leskuteacher.utils.constants.K;
@@ -38,5 +39,10 @@ public class OrderAPI extends BaseAPI implements OrderClass {
     @Override
     public Maybe<JsonObject> rescheduleOrder(int id) {
         return app.mAPIService.rescheduleOrder(id).retry(1).subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Maybe<List<FinishedOrder>> getFinishedOrderList() {
+        return app.mAPIService.getFinishedOrderList().retry(K.MAX_RETRIES).subscribeOn(Schedulers.io());
     }
 }

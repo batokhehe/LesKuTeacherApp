@@ -1,6 +1,6 @@
 package id.co.leskuteacher.viewmodels.outputs;
 
-public interface UpcomingOrderViewModelOutputs {
+public interface FinishedOrderViewModelOutputs {
     String getId();
 
     String getStudyClassId();
@@ -17,7 +17,5 @@ public interface UpcomingOrderViewModelOutputs {
 
     String getStudyStartAt();
 
-    int getStatus();
-
-    String getStatusText();
+    String getStudyEndAt();
 }

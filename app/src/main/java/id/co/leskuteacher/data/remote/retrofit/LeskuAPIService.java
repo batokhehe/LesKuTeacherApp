@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 
+import id.co.leskuteacher.model.FinishedOrder;
+import id.co.leskuteacher.model.Presence;
 import id.co.leskuteacher.model.UpcomingOrder;
 import id.co.leskuteacher.model.WaitingOrder;
 import io.reactivex.Maybe;
@@ -65,5 +67,19 @@ public interface LeskuAPIService
     @POST ("teacher/schedule/reschedule")
     Maybe<JsonObject> rescheduleOrder (
             @Field("id") int id
+    );
+
+    @GET ("teacher/order/finished")
+    Maybe<List<FinishedOrder>> getFinishedOrderList ();
+
+    //PRESENCE
+    @GET ("teacher/presence")
+    Maybe<List<Presence>> getPresenceList ();
+
+    @FormUrlEncoded
+    @POST ("teacher/presence/confirm")
+    Maybe<JsonObject> confirmPresence (
+            @Field("id") int id,
+            @Field("unique_code") String uniqueCode
     );
 }

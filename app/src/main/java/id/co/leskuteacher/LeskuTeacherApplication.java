@@ -45,11 +45,6 @@ public class LeskuTeacherApplication extends Application {
         mAPIService = RetrofitServiceFactory.createService(LeskuAPIService.class, LeskuTeacherApplication.this);
     }
 
-    public void onLoggedIn(Context context){
-        sApp = this;
-        mAPIService = RetrofitServiceFactory.createService(LeskuAPIService.class, context);
-    }
-
     public boolean isNetworkAvailable ()
     {
         ConnectivityManager lConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -1,6 +1,6 @@
 package id.co.leskuteacher.viewmodels.outputs;
 
-public interface UpcomingOrderViewModelOutputs {
+public interface PresenceViewModelOutputs {
     String getId();
 
     String getStudyClassId();
@@ -16,8 +16,4 @@ public interface UpcomingOrderViewModelOutputs {
     String getStudentImage();
 
     String getStudyStartAt();
-
-    int getStatus();
-
-    String getStatusText();
 }

@@ -91,12 +91,10 @@
     <string-array name="nav_item_activity_titles">
         <item>Account</item>
         <item>Home</item>
-        <item>Order</item>
-        <item>Notifications</item>
-        <item>Settings</item>
+        <item>Presence</item>
     </string-array>
     <!-- O -->
-    <string name="orderClass">Pesanan</string>
+    <string name="order_class">Pesanan</string>
     <string name="others">Others</string>
     <string name="openDrawer">open_drawer</string>
     <!-- P -->
@@ -109,6 +107,7 @@
     <string name="photos">Photos</string>
     <string name="phone_number">Phone Number</string>
     <string name="phone_number_hint">Your Phone Number</string>
+    <string name="presence">Presensi</string>
     <string name="privacy_policy">Privacy Policy</string>
     <!-- Q -->
     <!-- R -->

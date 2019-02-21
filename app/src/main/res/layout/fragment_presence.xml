@@ -3,23 +3,23 @@
     <data>
         <variable
             name="orders"
-            type="id.co.leskuteacher.viewmodels.FinishedOrderListViewModel"/>
+            type="id.co.leskuteacher.viewmodels.PresenceListViewModel"/>
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_done_order"
+        android:id="@+id/swipe_presence"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <id.co.flipbox.sosoito.LoadingLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/ll_done_list"
+            android:id="@+id/ll_waiting_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_done_order"
+                android:id="@+id/rv_presence"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
