@@ -17,4 +17,6 @@ public class K
     public static String DONE_ORDER_LIST      = "DONE_ORDER_LIST";
     public static String DETAILS_ORDER_LIST      = "DETAILS_ORDER_LIST";
     public static String PRESENCE_LIST      = "PRESENCE_LIST";
+
+    public static String IP      = "IP";
 }

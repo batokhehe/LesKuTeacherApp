@@ -29,7 +29,7 @@ public interface LeskuAPIService
     */
 
     @FormUrlEncoded
-    @POST("auth/teacher/login/")
+    @POST("auth/teacher/login")
     Maybe<JsonObject> login(
             @Field("email") String email,
             @Field("password") String password,

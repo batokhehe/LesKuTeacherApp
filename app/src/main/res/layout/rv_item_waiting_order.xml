@@ -66,8 +66,9 @@
 
                     <ImageView
                         android:id="@+id/waitingOrderStudentImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
                         android:scaleType="fitXY"
                         app:imageStudentUrl="@{waitingOrder.studentImage}"/>
 
@@ -103,8 +104,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:background="@color/green"
-                    android:text="@string/accept"/>
+                    android:background="@drawable/shape_rect_button_green"
+                    android:text="@string/accept"
+                    android:textColor="@color/white"/>
 
                 <Button
                     android:id="@+id/btn_decline_order"
@@ -112,8 +114,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:background="@color/red"
-                    android:text="@string/decline"/>
+                    android:background="@drawable/shape_rect_button_red"
+                    android:text="@string/decline"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 

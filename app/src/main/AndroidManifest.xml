@@ -45,6 +45,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".views.activities.others.IpActivity"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".views.activities.MainActivity"
             android:screenOrientation="portrait" />
 
