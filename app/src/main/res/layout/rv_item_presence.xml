@@ -4,7 +4,7 @@
         <import type="android.view.View" />
         <variable
             name="presence"
-            type="id.co.leskuteacher.viewmodels.PresenceViewModel"/>
+            type="id.com.lescepatteacher.viewmodels.PresenceViewModel"/>
     </data>
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

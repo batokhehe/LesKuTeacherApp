@@ -4,7 +4,7 @@
     <data>
         <variable
             name="auth"
-            type="id.co.leskuteacher.viewmodels.AuthViewModel"/>
+            type="id.com.lescepatteacher.viewmodels.AuthViewModel"/>
     </data>
 
     <ScrollView
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <id.co.leskuteacher.views.customviews.CustomTextView
+                <com.lescepat.teacher.views.customviews.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/space_small"
@@ -55,7 +55,7 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-                <id.co.leskuteacher.views.customviews.CustomTextView
+                <com.lescepat.teacher.views.customviews.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/space_small"
@@ -96,7 +96,7 @@
                     android:textColor="@color/white"
                     android:text="@string/sign_in" />
 
-                <id.co.leskuteacher.views.customviews.CustomTextView
+                <com.lescepat.teacher.views.customviews.CustomTextView
                     android:id="@+id/tv_forgot_password"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

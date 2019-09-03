@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:474643525495:android:2cfac6676a6e2df1",
+        "android_client_info": {
+          "package_name": "com.lescepat.teacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474643525495-63jkji3io8g81bn3k32pkd6h3uf3vbug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg8Elqi487GJ18SJ-pXlwU9UxxtvBfeHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474643525495-63jkji3io8g81bn3k32pkd6h3uf3vbug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:474643525495:android:3f6d0e5661be87a2",
         "android_client_info": {
           "package_name": "id.co.leskuteacher"
@@ -25,15 +54,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474643525495-63jkji3io8g81bn3k32pkd6h3uf3vbug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

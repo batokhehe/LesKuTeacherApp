@@ -4,7 +4,7 @@
         <import type="android.view.View" />
         <variable
             name="waitingOrder"
-            type="id.co.leskuteacher.viewmodels.WaitingOrderViewModel"/>
+            type="id.com.lescepatteacher.viewmodels.WaitingOrderViewModel"/>
     </data>
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

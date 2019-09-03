@@ -3,7 +3,7 @@
     <data>
         <variable
             name="orders"
-            type="id.co.leskuteacher.viewmodels.WaitingOrderListViewModel"/>
+            type="id.com.lescepatteacher.viewmodels.WaitingOrderListViewModel"/>
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout

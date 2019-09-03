@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="id.co.leskuteacher">
+    package="com.lescepat.teacher.teacher">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".LeskuTeacherApplication"
+        android:name="com.lescepat.teacher.LeskuTeacherApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -37,7 +37,7 @@
             android:value="@string/default_notification_channel_id" />
         <!-- [END fcm_default_channel] -->
 
-        <activity android:name=".views.activities.auth.LoginActivity">
+        <activity android:name="com.lescepat.teacher.views.activities.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,14 +45,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".views.activities.others.IpActivity"
+        <activity android:name="com.lescepat.teacher.views.activities.others.IpActivity"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".views.activities.MainActivity"
+        <activity android:name="com.lescepat.teacher.views.activities.MainActivity"
             android:screenOrientation="portrait" />
 
         <!-- Firebase Notifications -->
-        <service android:name=".service.LeskuTeacherFirebaseMessagingService">
+        <service android:name="com.lescepat.teacher.service.LeskuTeacherFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
