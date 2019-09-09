@@ -2,20 +2,21 @@ package com.lescepat.teacher.views.activities;
 
 import android.Manifest;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
-import com.lescepat.teacher.LeskuTeacherApplication;
+import com.lescepat.teacher.LesCepatTeacherApplication;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public abstract class BaseActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
-    LeskuTeacherApplication app = LeskuTeacherApplication.getInstance();
+    LesCepatTeacherApplication app = LesCepatTeacherApplication.getInstance();
 
     @Override
     protected void onCreate (Bundle savedInstanceState)

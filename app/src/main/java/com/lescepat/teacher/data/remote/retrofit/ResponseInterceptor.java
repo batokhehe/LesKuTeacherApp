@@ -5,25 +5,25 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import com.lescepat.teacher.LeskuTeacherApplication;
+import com.lescepat.teacher.LesCepatTeacherApplication;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
 
 public class ResponseInterceptor implements Interceptor
 {
-    private LeskuTeacherApplication leskuTeacherApplication;
+    private LesCepatTeacherApplication lesCepatTeacherApplication;
     private Context       mContext;
 
     public ResponseInterceptor()
     {
-        leskuTeacherApplication = LeskuTeacherApplication.getInstance();
+        lesCepatTeacherApplication = LesCepatTeacherApplication.getInstance();
         mContext = null;
     }
 
     public ResponseInterceptor(Context context)
     {
-        leskuTeacherApplication = LeskuTeacherApplication.getInstance();
+        lesCepatTeacherApplication = LesCepatTeacherApplication.getInstance();
         mContext = context;
     }
 

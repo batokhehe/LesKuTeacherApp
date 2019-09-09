@@ -2,16 +2,17 @@ package com.lescepat.teacher.views.activities.others;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.lescepat.teacher.R;
 import com.orhanobut.hawk.Hawk;
 
 import com.lescepat.teacher.views.activities.MainActivity;
-import id.co.leskuteacher.R;
 import com.lescepat.teacher.utils.constants.K;
 
 public class IpActivity extends AppCompatActivity {

@@ -13,17 +13,17 @@ import com.orhanobut.hawk.Hawk;
 import com.lescepat.teacher.data.remote.retrofit.RetrofitServiceFactory;
 import com.lescepat.teacher.data.remote.retrofit.LeskuAPIService;
 
-public class LeskuTeacherApplication extends Application {
-    private static LeskuTeacherApplication sApp;
+public class LesCepatTeacherApplication extends Application {
+    private static LesCepatTeacherApplication sApp;
     public LeskuAPIService mAPIService;
     public GoogleApiClient mGoogleApiClient;
     public Location mLastLocation;
 
-    public static LeskuTeacherApplication getInstance ()
+    public static LesCepatTeacherApplication getInstance ()
     {
         if (sApp == null)
         {
-            sApp = new LeskuTeacherApplication();
+            sApp = new LesCepatTeacherApplication();
         }
 
         return sApp;
@@ -42,7 +42,7 @@ public class LeskuTeacherApplication extends Application {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         sApp = this;
-        mAPIService = RetrofitServiceFactory.createService(LeskuAPIService.class, LeskuTeacherApplication.this);
+        mAPIService = RetrofitServiceFactory.createService(LeskuAPIService.class, LesCepatTeacherApplication.this);
     }
 
     public boolean isNetworkAvailable ()

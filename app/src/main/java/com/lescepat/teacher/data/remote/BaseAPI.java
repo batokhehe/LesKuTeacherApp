@@ -1,8 +1,8 @@
 package com.lescepat.teacher.data.remote;
 
-import com.lescepat.teacher.LeskuTeacherApplication;
+import com.lescepat.teacher.LesCepatTeacherApplication;
 
 abstract class BaseAPI
 {
-    LeskuTeacherApplication app = LeskuTeacherApplication.getInstance();
+    LesCepatTeacherApplication app = LesCepatTeacherApplication.getInstance();
 }

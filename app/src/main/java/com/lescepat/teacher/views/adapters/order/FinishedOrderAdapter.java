@@ -1,18 +1,19 @@
 package com.lescepat.teacher.views.adapters.order;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
-import id.co.leskuteacher.R;
-import id.co.leskuteacher.databinding.RvItemFinishedOrderBinding;
+import com.lescepat.teacher.R;
 import com.lescepat.teacher.model.FinishedOrder;
+import com.lescepat.teacher.databinding.RvItemFinishedOrderBinding;
 import com.lescepat.teacher.viewmodels.FinishedOrderViewModel;
 
 public class FinishedOrderAdapter extends RecyclerView.Adapter<FinishedOrderAdapter.ListViewHolder>  {

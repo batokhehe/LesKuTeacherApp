@@ -1,13 +1,14 @@
 package com.lescepat.teacher.views.fragments.presence;
 
-import android.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lescepat.teacher.R;
+import com.lescepat.teacher.databinding.FragmentPresenceBinding;
 import com.lescepat.teacher.views.fragments.BaseFragment;
-import id.co.leskuteacher.R;
 import com.lescepat.teacher.data.DataManager;
-import id.co.leskuteacher.databinding.FragmentPresenceBinding;
 import com.lescepat.teacher.model.Presence;
 import com.lescepat.teacher.utils.RetrofitErrorAdapter;
 import com.lescepat.teacher.viewmodels.PresenceListViewModel;

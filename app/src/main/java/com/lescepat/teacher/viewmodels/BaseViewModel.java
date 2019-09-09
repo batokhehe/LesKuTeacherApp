@@ -1,6 +1,6 @@
 package com.lescepat.teacher.viewmodels;
 
-import android.databinding.BaseObservable;
+import androidx.databinding.BaseObservable;
 
 public abstract class BaseViewModel extends BaseObservable
 {}

@@ -70,7 +70,7 @@ public class UpcomingOrderViewModel extends BaseViewModel implements UpcomingOrd
         int status = mUpcomingOrder.getStatus();
         String message = "";
         if(status == 4){
-            message = "Pertemuan telah dikonformasi";
+            message = "Pertemuan Telah Dikonfirmasi";
         } else if (status == 5){
             message = "Menunggu Persetujan Reschedule";
         } else if (status == 6){

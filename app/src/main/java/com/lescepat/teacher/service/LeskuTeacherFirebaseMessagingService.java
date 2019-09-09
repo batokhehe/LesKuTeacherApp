@@ -8,8 +8,9 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
@@ -17,8 +18,8 @@ import com.firebase.jobdispatcher.Job;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import com.lescepat.teacher.R;
 import com.lescepat.teacher.views.activities.MainActivity;
-import id.co.leskuteacher.R;
 
 public class LeskuTeacherFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "LeskuTcFirebaseMsgSvc";

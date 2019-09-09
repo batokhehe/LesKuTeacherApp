@@ -1,19 +1,20 @@
 package com.lescepat.teacher.views.fragments.auth;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+
 import com.google.gson.JsonObject;
 
+import com.lescepat.teacher.R;
+import com.lescepat.teacher.databinding.FragmentForgotPasswordBinding;
 import com.lescepat.teacher.views.fragments.BaseFragment;
-import id.co.leskuteacher.R;
 import com.lescepat.teacher.data.DataManager;
-import id.co.leskuteacher.databinding.FragmentForgotPasswordBinding;
 import com.lescepat.teacher.utils.RetrofitErrorAdapter;
 import com.lescepat.teacher.utils.constants.S;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -22,7 +23,7 @@ import io.reactivex.functions.Consumer;
 public class ForgotPasswordFragment extends BaseFragment
 {
 
-    private FragmentForgotPasswordBinding       mBinding;
+    private FragmentForgotPasswordBinding mBinding;
     private OnForgotFragmentInteractionListener mListener;
 
     public ForgotPasswordFragment()
@@ -99,7 +100,7 @@ public class ForgotPasswordFragment extends BaseFragment
 
     private void submitForgotPassword ()
     {
-        String id = mBinding.tilEmailWrapper.getEditText().getText().toString();
+        String id = mBinding.etEmailUser.getText().toString();
         if (!validate(id))
         {
             return;
@@ -138,7 +139,7 @@ public class ForgotPasswordFragment extends BaseFragment
         boolean valid = true;
         if (email.length() == 0)
         {
-            mBinding.tilEmailWrapper.setError(S.error_empty_id);
+            mBinding.etEmailUser.setError(S.error_empty_id);
             valid = false;
         }
 

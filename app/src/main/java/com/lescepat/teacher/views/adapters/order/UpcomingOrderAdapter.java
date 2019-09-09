@@ -2,24 +2,25 @@ package com.lescepat.teacher.views.adapters.order;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.gson.JsonObject;
 
 import java.util.List;
 
-import id.co.leskuteacher.R;
+import com.lescepat.teacher.R;
 import com.lescepat.teacher.data.DataManager;
-import id.co.leskuteacher.databinding.RvItemUpcomingOrderBinding;
 import com.lescepat.teacher.model.UpcomingOrder;
+import com.lescepat.teacher.databinding.RvItemUpcomingOrderBinding;
 import com.lescepat.teacher.utils.RetrofitErrorAdapter;
 import com.lescepat.teacher.viewmodels.UpcomingOrderViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -2,7 +2,6 @@ package com.lescepat.teacher.views.fragments.auth;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,16 +10,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+
 import com.google.gson.JsonObject;
 
 import br.com.ilhasoft.support.validation.Validator;
+
+import com.lescepat.teacher.R;
 import com.lescepat.teacher.data.remote.retrofit.RetrofitServiceFactory;
+import com.lescepat.teacher.databinding.FragmentLoginBinding;
 import com.lescepat.teacher.views.fragments.BaseFragment;
-import com.lescepat.teacher.LeskuTeacherApplication;
-import id.co.leskuteacher.R;
+import com.lescepat.teacher.LesCepatTeacherApplication;
 import com.lescepat.teacher.data.DataManager;
 import com.lescepat.teacher.data.remote.retrofit.LeskuAPIService;
-import id.co.leskuteacher.databinding.FragmentLoginBinding;
 import com.lescepat.teacher.manager.HawkManager;
 import com.lescepat.teacher.model.User;
 import com.lescepat.teacher.utils.RetrofitErrorAdapter;
@@ -33,17 +35,17 @@ public class LoginFragment extends BaseFragment
 {
     private static final String TAG = LoginFragment.class.getSimpleName();
 
-    private FragmentLoginBinding               mBinding;
+    private FragmentLoginBinding mBinding;
     private Validator                          mValidator;
     private OnLoginFragmentInteractionListener mListener;
     private HawkManager hawkManager;
-    LeskuTeacherApplication mApp;
+    LesCepatTeacherApplication mApp;
 
     public LoginFragment()
     {
         // Required empty public constructor
         setArguments(new Bundle());
-        mApp = new LeskuTeacherApplication();
+        mApp = new LesCepatTeacherApplication();
     }
 
     @Override
@@ -142,7 +144,7 @@ public class LoginFragment extends BaseFragment
     public void submitLogin ()
     {
 
-        final String id       = mBinding.tilUserIdWrapper.getEditText().getText().toString();
+        final String id       = mBinding.etEmailUser.getText().toString();
         final String password = mBinding.etPassword.getText().toString();
 
         hawkManager = new HawkManager();

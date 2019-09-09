@@ -2,10 +2,6 @@ package com.lescepat.teacher.views.adapters.presence;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +10,19 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.gson.JsonObject;
 
 import java.util.List;
 
+import com.lescepat.teacher.R;
 import com.lescepat.teacher.data.DataManager;
+import com.lescepat.teacher.databinding.RvItemPresenceBinding;
 import com.lescepat.teacher.viewmodels.PresenceViewModel;
-import id.co.leskuteacher.R;
-import id.co.leskuteacher.databinding.RvItemPresenceBinding;
 import com.lescepat.teacher.model.Presence;
 import com.lescepat.teacher.utils.RetrofitErrorAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;

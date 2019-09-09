@@ -5,14 +5,16 @@ import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 
-import id.co.leskuteacher.R;
+import androidx.appcompat.widget.AppCompatTextView;
+
+import com.lescepat.teacher.R;
 
 /**
  * Created by bukhoriaqid on 11/11/16. based on https://futurestud.io/tutorials/custom-fonts-on-android-extending-textview
  * https://developer.android.com/training/custom-views/create-view.html
  */
 
-public class CustomTextView extends android.support.v7.widget.AppCompatTextView
+public class CustomTextView extends AppCompatTextView
 {
 
     public CustomTextView(Context context)
