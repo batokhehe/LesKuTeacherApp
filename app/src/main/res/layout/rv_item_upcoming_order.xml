@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
-        android:elevation="2dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
         android:background="@drawable/shape_rect_rv_item"
         android:foreground="?attr/selectableItemBackground">
 
@@ -44,18 +45,26 @@
                         android:id="@+id/upcomingOrderSubjectName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
                         android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@{upcomingOrder.subjectName}" />
 
+                    <View
+                        style="@style/Divider"
+                        android:layout_margin="5dp"/>
+
                     <TextView
                         android:id="@+id/upcomingOrderStudyStartAt"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@{upcomingOrder.studyStartAt}" />
+                        android:text="@{upcomingOrder.studyStartAt}"
+                        android:paddingLeft="5dip"/>
 
                 </LinearLayout>
 
@@ -75,17 +84,19 @@
 
                     <TextView
                         android:id="@+id/upcomingOrderStudentName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@{upcomingOrder.studentName}" />
 
                     <TextView
                         android:id="@+id/upcomingOrderStudentAddress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@{upcomingOrder.studentAddress}" />
 
@@ -96,7 +107,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
                 android:visibility="@{upcomingOrder.status == 3 ? View.GONE : View.VISIBLE}"
+                android:background="@{upcomingOrder.status == 4 ? @drawable/shape_rect_button_green_outlined : @drawable/shape_rect_button_red_outlined}"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@{upcomingOrder.getStatusText}"/>
 

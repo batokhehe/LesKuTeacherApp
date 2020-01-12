@@ -2,6 +2,8 @@ package com.lescepat.teacher.views.adapters.presence;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +86,7 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.ListVi
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.MATCH_PARENT);
+                    lp.setMargins(10, 5, 10, 5);
                     etUniqueCode.setLayoutParams(lp);
                     builder.setMessage("Kode Unik : ")
                             .setCancelable(false)
@@ -108,6 +111,8 @@ public class PresenceAdapter extends RecyclerView.Adapter<PresenceAdapter.ListVi
                                         }
                                     });
                     final AlertDialog alert = builder.create();
+                    alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    alert.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog);
                     alert.setView(etUniqueCode);
                     alert.show();
                 }

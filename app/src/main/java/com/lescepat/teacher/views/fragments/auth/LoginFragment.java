@@ -1,5 +1,7 @@
 package com.lescepat.teacher.views.fragments.auth;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import br.com.ilhasoft.support.validation.Validator;
 import com.lescepat.teacher.R;
 import com.lescepat.teacher.data.remote.retrofit.RetrofitServiceFactory;
 import com.lescepat.teacher.databinding.FragmentLoginBinding;
+import com.lescepat.teacher.views.activities.auth.LoginActivity;
 import com.lescepat.teacher.views.fragments.BaseFragment;
 import com.lescepat.teacher.LesCepatTeacherApplication;
 import com.lescepat.teacher.data.DataManager;
@@ -193,9 +196,18 @@ public class LoginFragment extends BaseFragment
 
 
                            if(hawkManager.getAppUserToken() != null){
-                               mApp.mAPIService = RetrofitServiceFactory.createService(LeskuAPIService.class, getContext());
-                               Intent intent = new Intent(getContext(), MainActivity.class);
-                               startActivity(intent);
+//                               mApp.mAPIService = RetrofitServiceFactory.createService(LeskuAPIService.class, getContext());
+//                               Intent intent = new Intent(getContext(), MainActivity.class);
+//                               startActivity(intent);
+//                               getActivity().finish();
+
+                               Intent mStartActivity = new Intent(getContext(), LoginActivity.class);
+                               int mPendingIntentId = 1234567;
+                               PendingIntent mPendingIntent = PendingIntent.getActivity(getContext(), mPendingIntentId, mStartActivity,
+                                       PendingIntent.FLAG_CANCEL_CURRENT);
+                               AlarmManager mgr = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+                               mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 5, mPendingIntent);
+                               System.exit(0);
                                getActivity().finish();
                            }
 

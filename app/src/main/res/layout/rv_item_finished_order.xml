@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dip"
-        android:elevation="2dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
         android:background="@drawable/shape_rect_rv_item"
         android:foreground="?attr/selectableItemBackground">
 
@@ -41,29 +42,40 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/doneOrderSubjectName"
+                        android:id="@+id/finishedOrderSubjectName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
                         android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@{finishedOrder.subjectName}" />
 
+                    <View
+                        style="@style/Divider"
+                        android:layout_margin="5dp"/>
+
                     <TextView
-                        android:id="@+id/doneOrderStudyStartAt"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/finishedOrderStudyStartAt"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@{finishedOrder.studyStartAt}" />
+                        android:text="@{finishedOrder.studyStartAt}"
+                        android:paddingLeft="5dip"/>
 
                     <TextView
                         android:id="@+id/doneOrderStudyEndAt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="@{finishedOrder.studyEndAt}" />
+                        android:text="@{finishedOrder.studyEndAt}"
+                        android:paddingLeft="5dip"/>
 
                 </LinearLayout>
 
@@ -83,17 +95,19 @@
 
                     <TextView
                         android:id="@+id/doneOrderStudentName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@{finishedOrder.studentName}" />
 
                     <TextView
                         android:id="@+id/doneOrderStudentAddress"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:gravity="center_horizontal"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@{finishedOrder.studentAddress}" />
 
